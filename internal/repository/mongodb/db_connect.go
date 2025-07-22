@@ -2,6 +2,7 @@ package mongodb
 
 import (
 	"context"
+	"errors"
 	"log"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -29,6 +30,9 @@ func ConnectToMongo() error {
 	return nil
 }
 
-func GetMongoDB() *mongo.Client {
-	return MongoDBClient
+func GetMongoDB() (*mongo.Client, error) {
+	if MongoDBClient == nil {
+		return nil, errors.New("mongodb client is not initialized")
+	}
+	return MongoDBClient, nil
 }

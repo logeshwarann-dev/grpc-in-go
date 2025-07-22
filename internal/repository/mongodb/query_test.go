@@ -1,9 +1,11 @@
 package mongodb
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/logeshwarann-dev/grpc-in-go/internal/models"
+	"github.com/logeshwarann-dev/grpc-in-go/pkg/utils"
 )
 
 func TestConnectToMongo(t *testing.T) {
@@ -27,4 +29,9 @@ func TestAddUserInDB(t *testing.T) {
 		t.Fatalf("Error while insert in record: %v", err.Error())
 	}
 	t.Logf("Record inserted. User Id: %v", userId)
+}
+
+func TestSplit(t *testing.T) {
+	src := "ObjectId('687fa31f98d6042e08feb867')"
+	fmt.Println(utils.Split(src, "'")[1])
 }
