@@ -20,16 +20,16 @@ message NewUser {
 }
 
 message UserResponse {
-    uint32 id = 1;
+    string id = 1;
     NewUser user = 2;
 }
 
 message UserId {
-    uint32 id = 1;
+    string id = 1;
 }
 
 message ModifiedUser {
-    uint32 id = 1;
+    string id = 1;
     string fieldName = 2;
     string newValue = 3;
 }

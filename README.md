@@ -59,6 +59,6 @@ Go GRPC command:
 Syntax: `protoc --go_out=<output dir> --go_opt=paths=source_relative --go-grpc_out=<output dir> --go-grpc_opt=paths=source_relative <proto main file>`
 ```
 cd proto
-protoc --go_out=./out --go_opt=paths=source_relative --go-grpc_out=./out --go-grpc_opt=paths=source_relative ./user_mgmt.proto     
+protoc --go_out=./rpcgen --go_opt=paths=source_relative --go-grpc_out=./rpcgen --go-grpc_opt=paths=source_relative ./user_mgmt.proto     
 ```
 

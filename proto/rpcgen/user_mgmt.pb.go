@@ -99,7 +99,7 @@ func (x *NewUser) GetPhNo() string {
 
 type UserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	User          *NewUser               `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -135,11 +135,11 @@ func (*UserResponse) Descriptor() ([]byte, []int) {
 	return file_user_mgmt_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *UserResponse) GetId() uint32 {
+func (x *UserResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *UserResponse) GetUser() *NewUser {
@@ -151,7 +151,7 @@ func (x *UserResponse) GetUser() *NewUser {
 
 type UserId struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -186,16 +186,16 @@ func (*UserId) Descriptor() ([]byte, []int) {
 	return file_user_mgmt_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *UserId) GetId() uint32 {
+func (x *UserId) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type ModifiedUser struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	FieldName     string                 `protobuf:"bytes,2,opt,name=fieldName,proto3" json:"fieldName,omitempty"`
 	NewValue      string                 `protobuf:"bytes,3,opt,name=newValue,proto3" json:"newValue,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -232,11 +232,11 @@ func (*ModifiedUser) Descriptor() ([]byte, []int) {
 	return file_user_mgmt_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ModifiedUser) GetId() uint32 {
+func (x *ModifiedUser) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *ModifiedUser) GetFieldName() string {
@@ -309,12 +309,12 @@ const file_user_mgmt_proto_rawDesc = "" +
 	"\x05email\x18\x04 \x01(\tR\x05email\x12\x12\n" +
 	"\x04phNo\x18\x05 \x01(\tR\x04phNo\"E\n" +
 	"\fUserResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12%\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12%\n" +
 	"\x04user\x18\x02 \x01(\v2\x11.usermgmt.NewUserR\x04user\"\x18\n" +
 	"\x06UserId\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\"X\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"X\n" +
 	"\fModifiedUser\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x1c\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1c\n" +
 	"\tfieldName\x18\x02 \x01(\tR\tfieldName\x12\x1a\n" +
 	"\bnewValue\x18\x03 \x01(\tR\bnewValue\"%\n" +
 	"\x0fResponseMessage\x12\x12\n" +
