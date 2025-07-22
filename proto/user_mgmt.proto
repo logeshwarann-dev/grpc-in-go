@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package usermgmt;
+
+option go_package = "github.com/logeshwarann-dev/grpc-in-go/proto";
+
+service UserManagement {
+    rpc AddUser(NewUser) returns (UserResponse) {}
+    rpc GetUser(UserId) returns (UserResponse) {}
+    rpc UpdateUser(ModifiedUser) returns (UserResponse) {}
+    rpc DeleteUser(UserId) returns (ResponseMessage) {}
+}
+
+message NewUser {
+    string firstName = 1;
+    string lastName = 2;
+    uint32 age = 3;
+    string email = 4;
+    string phNo = 5;
+}
+
+message UserResponse {
+    uint32 id = 1;
+    NewUser user = 2;
+}
+
+message UserId {
+    uint32 id = 1;
+}
+
+message ModifiedUser {
+    uint32 id = 1;
+    string fieldName = 2;
+    string newValue = 3;
+}
+
+message ResponseMessage {
+    string resp = 1;
+}

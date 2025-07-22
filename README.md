@@ -16,7 +16,6 @@ gRPC:
  -> High-performance
  -> uses Http/2
 
-
 Project Description:
 
 User Management Service: 
