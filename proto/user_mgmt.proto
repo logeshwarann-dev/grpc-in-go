@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package usermgmt;
 
-option go_package = "github.com/logeshwarann-dev/grpc-in-go/proto";
+option go_package = "out/";
 
 service UserManagement {
     rpc AddUser(NewUser) returns (UserResponse) {}

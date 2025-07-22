@@ -28,3 +28,26 @@ Get User: Fetch a specific user
 Update User: Modify an existing user
 
 Delete User: Remove an existing user
+
+# Instal Protobuf compiler in Windows:
+
+In Powershell, Execute the below command:
+
+```
+winget install protobuf
+```
+
+Then, Navigate to your project root directory and Execute the following commands:
+
+```
+go get -u google.golang.org/protobuf/cmd/protoc-gen-go
+go install google.golang.org/protobuf/cmd/protoc-gen-go
+
+```
+
+# Protobuf compiler commands:
+
+```
+protoc --go_out=. .\<file-name>.proto
+```
+
