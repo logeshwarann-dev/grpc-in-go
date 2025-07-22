@@ -38,8 +38,15 @@ func (rpcServer *Server) DeleteUser(context.Context, *pb.UserId) (*pb.ResponseMe
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
 
-func (rpcServer *Server) GetUser(context.Context, *pb.UserId) (*pb.UserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
+func (rpcServer *Server) GetUser(ctx context.Context, userIdReq *pb.UserId) (*pb.UserResponse, error) {
+	response, err := handlers.GetUserbyId(userIdReq)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, fmt.Sprintf("%v", err))
+	}
+	return &pb.UserResponse{
+		Id:   userIdReq.Id,
+		User: response,
+	}, nil
 }
 
 func (rpcServer *Server) UpdateUser(context.Context, *pb.ModifiedUser) (*pb.UserResponse, error) {
@@ -57,10 +64,10 @@ func main() {
 	grpcServer := grpc.NewServer()
 
 	pb.RegisterUserManagementServer(grpcServer, &Server{})
-
+	log.Println("gRPC Server yet to start..")
 	if err := grpcServer.Serve(listener); err != nil {
 		log.Fatalln("unable to start grpc server: ", err)
 	}
 
-	log.Println("gRPC Server has started!")
+	log.Println("gRPC Server has stopped!")
 }
