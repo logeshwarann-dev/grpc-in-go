@@ -43,11 +43,22 @@ Then, Navigate to your project root directory and Execute the following commands
 go get -u google.golang.org/protobuf/cmd/protoc-gen-go
 go install google.golang.org/protobuf/cmd/protoc-gen-go
 
+go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
+
 ```
 
 # Protobuf compiler commands:
 
+SIMPLE Command:
 ```
 protoc --go_out=. .\<file-name>.proto
+```
+
+Go GRPC command:
+Syntax: `protoc --go_out=<output dir> --go_opt=paths=source_relative --go-grpc_out=<output dir> --go-grpc_opt=paths=source_relative <proto main file>`
+```
+cd proto
+protoc --go_out=./out --go_opt=paths=source_relative --go-grpc_out=./out --go-grpc_opt=paths=source_relative ./user_mgmt.proto     
 ```
 
