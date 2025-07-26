@@ -44,7 +44,7 @@ func TestGetUserFromDB(t *testing.T) {
 
 func TestDeleteUser(t *testing.T) {
 	TestConnectToMongo(t)
-	userId := "687fcf4fcd83c8a621c34382"
+	userId := "687fa31f98d6042e08feb867"
 	if err := DeleteRecordInDB(userId); err != nil {
 		t.Fatalf("error in deleting user in db: %v", err)
 	}

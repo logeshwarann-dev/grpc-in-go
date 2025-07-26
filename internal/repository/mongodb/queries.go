@@ -2,6 +2,7 @@ package mongodb
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
 
@@ -49,9 +50,12 @@ func FindMany(coll *mongo.Collection, filter interface{}) ([]models.User, error)
 	return docs, nil
 }
 
-func FindOne(coll *mongo.Collection, filter interface{}) (models.User, error) {
+func FindDocument(coll *mongo.Collection, filter interface{}) (models.User, error) {
 	res := coll.FindOne(context.TODO(), filter)
 	if res.Err() != nil {
+		if errors.Is(res.Err(), mongo.ErrNoDocuments) {
+			return models.User{}, fmt.Errorf("invalid id. record not found")
+		}
 		return models.User{}, fmt.Errorf("error in finding document: %v", res.Err())
 	}
 	var userDoc models.MongoDBDocument

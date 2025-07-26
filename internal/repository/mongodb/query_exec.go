@@ -40,7 +40,7 @@ func GetRecordFromDB(userId string) (models.User, error) {
 		log.Println("error in filter query: ", err.Error())
 		return models.User{}, fmt.Errorf("error in filter query: %v", err.Error())
 	}
-	userRecord, err := FindOne(coll, bsonFilter)
+	userRecord, err := FindDocument(coll, bsonFilter)
 	if err != nil {
 		log.Println("error in finding document: ", err)
 		return models.User{}, err
