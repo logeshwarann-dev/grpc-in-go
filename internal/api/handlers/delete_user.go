@@ -11,7 +11,6 @@ func DeleteUserUsingId(userId *pb.UserId) (*pb.ResponseMessage, error) {
 	if err := mongodb.DeleteRecordInDB(userId.Id); err != nil {
 		return nil, fmt.Errorf("unable to delete record: %v", err)
 	}
-
 	return &pb.ResponseMessage{
 		Resp: "user deleted",
 	}, nil

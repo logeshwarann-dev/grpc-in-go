@@ -3,6 +3,7 @@ package mongodb
 import (
 	"context"
 	"fmt"
+	"log"
 
 	"github.com/logeshwarann-dev/grpc-in-go/internal/models"
 	"go.mongodb.org/mongo-driver/bson"
@@ -53,11 +54,18 @@ func FindOne(coll *mongo.Collection, filter interface{}) (models.User, error) {
 	if res.Err() != nil {
 		return models.User{}, fmt.Errorf("error in finding document: %v", res.Err())
 	}
-	var user models.User
-	if err := res.Decode(&user); err != nil {
+	var userDoc models.MongoDBDocument
+	if err := res.Decode(&userDoc); err != nil {
 		return models.User{}, fmt.Errorf("error in decoding bson result: %v", err)
 	}
-	return user, nil
+	log.Println("User document in MongoDB: ", userDoc)
+	return models.User{
+		FistName: userDoc.FistName,
+		LastName: userDoc.LastName,
+		Age:      userDoc.Age,
+		Email:    userDoc.Email,
+		PhNo:     userDoc.PhNo,
+	}, nil
 }
 
 func ReplaceDocument(coll *mongo.Collection, filter interface{}, replacement bson.D) (*mongo.UpdateResult, error) {
