@@ -10,6 +10,16 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
+func BuildReplacementDoc(updatedUser models.User) bson.D {
+	return bson.D{
+		{Key: "firstname", Value: updatedUser.FistName},
+		{Key: "lastname", Value: updatedUser.LastName},
+		{Key: "age", Value: updatedUser.Age},
+		{Key: "email", Value: updatedUser.Email},
+		{Key: "phno", Value: updatedUser.PhNo},
+	}
+}
+
 func BuildFilterById(userId string) (bson.D, error) {
 	objId, err := primitive.ObjectIDFromHex(userId)
 	if err != nil {
@@ -50,12 +60,12 @@ func FindOne(coll *mongo.Collection, filter interface{}) (models.User, error) {
 	return user, nil
 }
 
-func Update() {
-
+func Replace(coll *mongo.Collection, filter interface{}, replacement bson.D) (*mongo.UpdateResult, error) {
+	return coll.ReplaceOne(context.TODO(), filter, replacement)
 }
 
-func Delete() {
-
+func Delete(coll *mongo.Collection, filter interface{}) (*mongo.DeleteResult, error) {
+	return coll.DeleteOne(context.TODO(), filter)
 }
 
 func GetCollection(db *mongo.Client, dbName string, collName string) *mongo.Collection {
