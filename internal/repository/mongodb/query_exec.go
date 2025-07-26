@@ -48,13 +48,41 @@ func GetRecordFromDB(userId string) (models.User, error) {
 	return userRecord, nil
 }
 
-func UpdateRecordInDB(userId int, updatedUser models.User) error {
-	// db := GetMongoDB()
+func UpdateRecordInDB(userId string, updatedUser models.User) error {
+	db, err := GetMongoDB()
+	if err != nil {
+
+	}
+	coll := GetCollection(db, DatabaseName, CollectionName)
+	updateFilter, err := BuildFilterById(userId)
+	if err != nil {
+
+	}
+	replacementBson := BuildReplacementDoc(updatedUser)
+	updatedRes, err := ReplaceDocument(coll, updateFilter, replacementBson)
+	if err != nil {
+
+	}
+
+	log.Println("Total Docs Matched: ", updatedRes.MatchedCount, "\n Total Docs updated: ", updatedRes.ModifiedCount)
 	return nil
 }
 
-func DeleteRecordInDB(userId int) error {
-	// db := GetMongoDB()
+func DeleteRecordInDB(userId string) error {
+	db, err := GetMongoDB()
+	if err != nil {
+
+	}
+	coll := GetCollection(db, DatabaseName, CollectionName)
+	filter, err := BuildFilterById(userId)
+	if err != nil {
+
+	}
+	deleteRes, err := DeleteDocument(coll, filter)
+	if err != nil {
+
+	}
+	log.Println("Total Documents Deleted: ", deleteRes.DeletedCount)
 	return nil
 }
 

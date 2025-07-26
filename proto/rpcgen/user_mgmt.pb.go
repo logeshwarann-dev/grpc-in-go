@@ -196,8 +196,11 @@ func (x *UserId) GetId() string {
 type ModifiedUser struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	FieldName     string                 `protobuf:"bytes,2,opt,name=fieldName,proto3" json:"fieldName,omitempty"`
-	NewValue      string                 `protobuf:"bytes,3,opt,name=newValue,proto3" json:"newValue,omitempty"`
+	FirstName     string                 `protobuf:"bytes,2,opt,name=firstName,proto3" json:"firstName,omitempty"`
+	LastName      string                 `protobuf:"bytes,3,opt,name=lastName,proto3" json:"lastName,omitempty"`
+	Age           uint32                 `protobuf:"varint,4,opt,name=age,proto3" json:"age,omitempty"`
+	Email         string                 `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
+	PhNo          string                 `protobuf:"bytes,6,opt,name=phNo,proto3" json:"phNo,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -239,16 +242,37 @@ func (x *ModifiedUser) GetId() string {
 	return ""
 }
 
-func (x *ModifiedUser) GetFieldName() string {
+func (x *ModifiedUser) GetFirstName() string {
 	if x != nil {
-		return x.FieldName
+		return x.FirstName
 	}
 	return ""
 }
 
-func (x *ModifiedUser) GetNewValue() string {
+func (x *ModifiedUser) GetLastName() string {
 	if x != nil {
-		return x.NewValue
+		return x.LastName
+	}
+	return ""
+}
+
+func (x *ModifiedUser) GetAge() uint32 {
+	if x != nil {
+		return x.Age
+	}
+	return 0
+}
+
+func (x *ModifiedUser) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *ModifiedUser) GetPhNo() string {
+	if x != nil {
+		return x.PhNo
 	}
 	return ""
 }
@@ -312,11 +336,14 @@ const file_user_mgmt_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12%\n" +
 	"\x04user\x18\x02 \x01(\v2\x11.usermgmt.NewUserR\x04user\"\x18\n" +
 	"\x06UserId\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"X\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x94\x01\n" +
 	"\fModifiedUser\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1c\n" +
-	"\tfieldName\x18\x02 \x01(\tR\tfieldName\x12\x1a\n" +
-	"\bnewValue\x18\x03 \x01(\tR\bnewValue\"%\n" +
+	"\tfirstName\x18\x02 \x01(\tR\tfirstName\x12\x1a\n" +
+	"\blastName\x18\x03 \x01(\tR\blastName\x12\x10\n" +
+	"\x03age\x18\x04 \x01(\rR\x03age\x12\x14\n" +
+	"\x05email\x18\x05 \x01(\tR\x05email\x12\x12\n" +
+	"\x04phNo\x18\x06 \x01(\tR\x04phNo\"%\n" +
 	"\x0fResponseMessage\x12\x12\n" +
 	"\x04resp\x18\x01 \x01(\tR\x04resp2\xfc\x01\n" +
 	"\x0eUserManagement\x126\n" +

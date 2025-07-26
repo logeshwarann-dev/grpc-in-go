@@ -60,11 +60,11 @@ func FindOne(coll *mongo.Collection, filter interface{}) (models.User, error) {
 	return user, nil
 }
 
-func Replace(coll *mongo.Collection, filter interface{}, replacement bson.D) (*mongo.UpdateResult, error) {
+func ReplaceDocument(coll *mongo.Collection, filter interface{}, replacement bson.D) (*mongo.UpdateResult, error) {
 	return coll.ReplaceOne(context.TODO(), filter, replacement)
 }
 
-func Delete(coll *mongo.Collection, filter interface{}) (*mongo.DeleteResult, error) {
+func DeleteDocument(coll *mongo.Collection, filter interface{}) (*mongo.DeleteResult, error) {
 	return coll.DeleteOne(context.TODO(), filter)
 }
 

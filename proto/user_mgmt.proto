@@ -30,8 +30,11 @@ message UserId {
 
 message ModifiedUser {
     string id = 1;
-    string fieldName = 2;
-    string newValue = 3;
+    string firstName = 2;
+    string lastName = 3;
+    uint32 age = 4;
+    string email = 5;
+    string phNo = 6;
 }
 
 message ResponseMessage {

@@ -34,7 +34,9 @@ func (rpcServer *Server) AddUser(ctx context.Context, newUser *pb.NewUser) (*pb.
 	return response, nil
 }
 
-func (rpcServer *Server) DeleteUser(context.Context, *pb.UserId) (*pb.ResponseMessage, error) {
+func (rpcServer *Server) DeleteUser(ctx context.Context, userId *pb.UserId) (*pb.ResponseMessage, error) {
+
+	handlers.DeleteUserUsingId(userId)
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
 
@@ -49,8 +51,12 @@ func (rpcServer *Server) GetUser(ctx context.Context, userIdReq *pb.UserId) (*pb
 	}, nil
 }
 
-func (rpcServer *Server) UpdateUser(context.Context, *pb.ModifiedUser) (*pb.UserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
+func (rpcServer *Server) UpdateUser(ctx context.Context, updatedUser *pb.ModifiedUser) (*pb.UserResponse, error) {
+	modifiedUser, err := handlers.UpdateUserById(updatedUser)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, fmt.Sprintf("%v", err))
+	}
+	return modifiedUser, nil
 }
 
 func main() {

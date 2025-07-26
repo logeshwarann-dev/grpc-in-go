@@ -1,6 +1,10 @@
 package handlers
 
-func DeleteUserUsingId(userId string) error {
+import (
+	pb "github.com/logeshwarann-dev/grpc-in-go/proto/rpcgen"
+)
+
+func DeleteUserUsingId(userId *pb.UserId) error {
 
 	return nil
 }
