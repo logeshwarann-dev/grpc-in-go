@@ -36,8 +36,11 @@ func (rpcServer *Server) AddUser(ctx context.Context, newUser *pb.NewUser) (*pb.
 
 func (rpcServer *Server) DeleteUser(ctx context.Context, userId *pb.UserId) (*pb.ResponseMessage, error) {
 
-	handlers.DeleteUserUsingId(userId)
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
+	resp, err := handlers.DeleteUserUsingId(userId)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, fmt.Sprintf("%v", err))
+	}
+	return resp, nil
 }
 
 func (rpcServer *Server) GetUser(ctx context.Context, userIdReq *pb.UserId) (*pb.UserResponse, error) {
