@@ -27,6 +27,7 @@ type Server struct {
 }
 
 func (rpcServer *Server) AddUser(ctx context.Context, newUser *pb.NewUser) (*pb.UserResponse, error) {
+	log.Println("Recieved Request for adding User: ", newUser)
 	response, err := handlers.CreateUser(newUser)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, fmt.Sprintf("%v", err))
