@@ -261,6 +261,7 @@ protoc --go_out=./rpcgen --go_opt=paths=source_relative --go-grpc_out=./rpcgen -
 - [gRPC Official Documentation](https://grpc.io/docs/)
 - [Protocol Buffers Guide](https://developers.google.com/protocol-buffers)
 - [Go gRPC Tutorial](https://grpc.io/docs/languages/go/quickstart/)
+- [Easy Go gRPC Guide](https://www.bradcypert.com/grpc-fundamentals-with-go/)
 
 ## License
 
