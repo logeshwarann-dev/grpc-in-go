@@ -51,19 +51,18 @@ func GetRecordFromDB(userId string) (models.User, error) {
 func UpdateRecordInDB(userId string, updatedUser models.User) error {
 	db, err := GetMongoDB()
 	if err != nil {
-
+		return fmt.Errorf("error in mongodb client: %v", err)
 	}
 	coll := GetCollection(db, DatabaseName, CollectionName)
 	updateFilter, err := BuildFilterById(userId)
 	if err != nil {
-
+		return fmt.Errorf("error in filterById: %v", err)
 	}
 	replacementBson := BuildReplacementDoc(updatedUser)
 	updatedRes, err := ReplaceDocument(coll, updateFilter, replacementBson)
 	if err != nil {
-
+		return fmt.Errorf("error in replacing document in db: %v", updatedRes)
 	}
-
 	log.Println("Total Docs Matched: ", updatedRes.MatchedCount, "\n Total Docs updated: ", updatedRes.ModifiedCount)
 	return nil
 }
@@ -71,16 +70,16 @@ func UpdateRecordInDB(userId string, updatedUser models.User) error {
 func DeleteRecordInDB(userId string) error {
 	db, err := GetMongoDB()
 	if err != nil {
-
+		return fmt.Errorf("error in mongo client: %v", err)
 	}
 	coll := GetCollection(db, DatabaseName, CollectionName)
 	filter, err := BuildFilterById(userId)
 	if err != nil {
-
+		return fmt.Errorf("error in filterById: %v", err)
 	}
 	deleteRes, err := DeleteDocument(coll, filter)
 	if err != nil {
-
+		return fmt.Errorf("error in deleting document in db: %v", deleteRes)
 	}
 	log.Println("Total Documents Deleted: ", deleteRes.DeletedCount)
 	return nil
